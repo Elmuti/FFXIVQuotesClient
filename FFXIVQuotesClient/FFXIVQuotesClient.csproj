@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/13.1.0">
     <PropertyGroup>
-        <Version>0.1.0.1</Version>
+        <Version>0.1.0.2</Version>
         <Description>Simple HTTP-client interface plugin to enable you to interact with the QuoteDB webapp</Description>
         <PackageProjectUrl>https://github.com/goatcorp/SamplePlugin</PackageProjectUrl>
         <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
