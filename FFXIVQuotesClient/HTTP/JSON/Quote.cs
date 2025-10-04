@@ -1,4 +1,4 @@
-﻿namespace FFXIVQuotesClient.HTTP.JSON;
+﻿namespace FFXIVQuotesClient.Http.Json;
 using System.Text.Json.Serialization;
 
 public class Quote

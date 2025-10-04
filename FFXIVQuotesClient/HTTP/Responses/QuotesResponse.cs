@@ -1,7 +1,7 @@
-﻿namespace FFXIVQuotesClient.HTTP.Responses;
-
-using System.Text.Json.Serialization;
+﻿using System.Text.Json.Serialization;
 using System.Collections.Generic;
+
+namespace FFXIVQuotesClient.Http.Responses;
 
 public class QuotesResponse
 {

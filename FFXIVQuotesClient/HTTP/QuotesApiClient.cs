@@ -5,11 +5,10 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Text.Json.Serialization;
-using FFXIVQuotesClient.HTTP.JSON;
-using FFXIVQuotesClient.HTTP.Responses;
+using FFXIVQuotesClient.Http.Json;
+using FFXIVQuotesClient.Http.Responses;
 
-namespace FFXIVQuotesClient.HTTP;
+namespace FFXIVQuotesClient.Http;
 
 public class QuotesApiClient
 {

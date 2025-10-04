@@ -8,7 +8,7 @@ namespace FFXIVQuotesClient.Windows;
 
 public class ConfigWindow : Window, IDisposable
 {
-    private Plugin plugin;
+    private readonly Plugin plugin;
     private readonly Configuration configuration;
     private string? baseUrl;
     private string? apiToken;

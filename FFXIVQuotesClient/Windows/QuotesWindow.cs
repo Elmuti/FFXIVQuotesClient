@@ -1,21 +1,14 @@
 ﻿using System;
 using System.Numerics;
-using System.Threading.Tasks;
 using Dalamud.Bindings.ImGui;
 using Dalamud.Interface.Windowing;
-using Dalamud.Interface;
-using Dalamud.Interface.Colors;
 using Dalamud.Interface.Utility.Raii;
 namespace FFXIVQuotesClient.Windows;
 
 public class QuotesWindow : Window, IDisposable
 {
     private readonly Configuration configuration;
-    private Task? searchQuotesTask;
     
-    // We give this window a constant ID using ###.
-    // This allows for labels to be dynamic, like "{FPS Counter}fps###XYZ counter window",
-    // and the window ID will always be "###XYZ counter window" for ImGui
     public QuotesWindow(Plugin plugin) : base("Retrieve Quotes")
     {
         Flags = ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoScrollbar |
