@@ -24,7 +24,7 @@ public class QuotesApiClient
             {
                 try
                 {
-                    httpClient.BaseAddress = new Uri(value);
+                    httpClient.BaseAddress = new Uri(value.EndsWith('/') ? value : value + '/');
                     baseUrl = value;
                 }
                 catch (UriFormatException e)
