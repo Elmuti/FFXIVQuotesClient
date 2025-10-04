@@ -3,6 +3,7 @@
   "Name": "FFXIVQuotesClient",
   "Punchline": "Deploy your quotes lightning fast",
   "Description": "An HTTP-client interface to interact with quotes.elmu.dev",
+  "RepoUrl": "https://github.com/Elmuti/FFXIVQuotesClient",
   "ApplicableVersion": "any",
   "Tags": [
     "sample",
