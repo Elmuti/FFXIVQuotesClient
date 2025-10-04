@@ -1,0 +1,12 @@
+{
+  "Author": "Elmu Kelmu",
+  "Name": "FFXIVQuotesClient",
+  "Punchline": "Deploy your quotes lightning fast",
+  "Description": "An HTTP-client interface to interact with quotes.elmu.dev",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "sample",
+    "plugin",
+    "quote"
+  ]
+}
