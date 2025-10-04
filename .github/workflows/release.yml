@@ -32,15 +32,14 @@ jobs:
               run: dotnet build --configuration Release FFXIVQuotesClient/FFXIVQuotesClient.csproj -p:AssemblyVersion=${{ github.ref_name }}
 
             - name: Create Release
-              uses: actions/create-release@v1
-              id: create_release
+              uses: softprops/action-gh-release@v2
               with:
+                  tag_name: ${{ github.ref_name }}
+                  name: ${{ github.ref_name }}
                   draft: false
                   prerelease: false
-                  release_name: ${{ github.ref_name }}
-                  tag_name: ${{ github.ref_name }}
               env:
-                  GITHUB_TOKEN: ${{ github.token }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
             - name: Upload Release Archive
               uses: actions/upload-release-asset@v1
@@ -50,4 +49,4 @@ jobs:
                   asset_name: FFXIVQuotesClient.zip
                   asset_content_type: application/zip
               env:
-                  GITHUB_TOKEN: ${{ github.token }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
