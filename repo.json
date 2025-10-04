@@ -12,9 +12,9 @@
     "Punchline": "Deploy your quotes lightning fast",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://example.com/path/to/release/output.zip",
-    "DownloadLinkTesting": "https://example.com/path/to/testing/output.zip",
-    "DownloadLinkUpdate": "https://example.com/path/to/release/output.zip",
+    "DownloadLinkInstall": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.3/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.3/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.3/latest.zip",
     "LastUpdate": "1759622400"
   }
 ]
