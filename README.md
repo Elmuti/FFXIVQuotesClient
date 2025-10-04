@@ -18,7 +18,6 @@ This is a simple HTTP-client plugin for [Dalamud](https://github.com/goatcorp/Da
 
 ## Currently Work in progress
 
-* Retrieve 'n'-number of quotes
 
 ## Future plans
 
