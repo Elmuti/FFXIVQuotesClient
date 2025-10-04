@@ -4,7 +4,7 @@
     "Name": "FFXIVQuotesClient",
     "Description": "Simple HTTP-client interface plugin to enable you to interact with the QuoteDB webapp ",
     "InternalName": "FFXIVQuotesClient",
-    "AssemblyVersion": "0.1.0.1",
+    "AssemblyVersion": "0.1.0.3",
     "TestingAssemblyVersion": null,
     "RepoUrl": "https://github.com/Elmuti/FFXIVQuotesClient",
     "ApplicableVersion": "any",
@@ -18,3 +18,4 @@
     "LastUpdate": "1759622400"
   }
 ]
+
