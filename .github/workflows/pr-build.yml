@@ -1,39 +1,39 @@
-name: Sample PR Builder for FFXIVQuotesClient
-
 on:
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [ "master" ]
+    pull_request:
+        branches: [ "master" ]
 
 jobs:
+    Build:
+        runs-on: ubuntu-latest
+        env:
+            DALAMUD_HOME: /tmp/dalamud
+            DALAMUD_ARCHIVE_URL: ${{ vars.DALAMUD_ARCHIVE_URL || 'https://goatcorp.github.io/dalamud-distrib/latest.zip' }}
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v5
 
-  build:
-    runs-on: windows-2022
+            - name: Set up .NET
+              uses: actions/setup-dotnet@v5
+              with:
+                  dotnet-version: 9.0.x
 
-    env:
-      Solution_Name: FFXIVQuotesClient
+            - name: Download Dalamud Latest
+              run: |
+                  wget ${{ env.DALAMUD_ARCHIVE_URL }} -O ${{ env.DALAMUD_HOME }}.zip
+                  unzip ${{ env.DALAMUD_HOME }}.zip -d ${{ env.DALAMUD_HOME }}
 
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v5
+            - name: Restore Project
+              run: dotnet restore
 
-    - name: Install .NET
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 9.0.x
+            - name: Build Project
+              run: dotnet build --configuration Release FFXIVQuotesClient/FFXIVQuotesClient.csproj
 
-    - name: Download Dalamud
-      run: |
-        Invoke-WebRequest -Uri https://goatcorp.github.io/dalamud-distrib/latest.zip -OutFile latest.zip
-        Expand-Archive -Force latest.zip "$env:AppData\XIVLauncher\addon\Hooks\dev"
-
-    - name: Build with dotnet
-      run: dotnet build --configuration Release
-
-    - name: Store artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: FFXIVQuotesClient
-        path: .\FFXIVQuotesClient\bin\x64\Release\FFXIVQuotesClient\*
-        if-no-files-found: error
-        retention-days: 1
-
+            - name: Upload Artifacts
+              uses: actions/upload-artifact@v4
+              with:
+                  name: Quack
+                  path: |
+                      FFXIVQuotesClient/bin/Release/*
+                      !FFXIVQuotesClient/bin/Release/FFXIVQuotesClient/*
