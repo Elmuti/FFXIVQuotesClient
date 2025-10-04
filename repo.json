@@ -1,0 +1,20 @@
+[
+  {
+    "Author": "Elmu Kelmu",
+    "Name": "FFXIVQuotesClient",
+    "Description": "Simple HTTP-client interface plugin to enable you to interact with the QuoteDB webapp ",
+    "InternalName": "FFXIVQuotesClient",
+    "AssemblyVersion": "0.1.0.0",
+    "TestingAssemblyVersion": null,
+    "RepoUrl": "https://github.com/Elmuti/FFXIVQuotesClient",
+    "ApplicableVersion": "any",
+    "DalamudApiLevel": 13,
+    "Punchline": "Deploy your quotes lightning fast",
+    "IsHide": false,
+    "IsTestingExclusive": false,
+    "DownloadLinkInstall": "https://example.com/path/to/release/output.zip",
+    "DownloadLinkTesting": "https://example.com/path/to/testing/output.zip",
+    "DownloadLinkUpdate": "https://example.com/path/to/release/output.zip",
+    "LastUpdate": "1759622400"
+  }
+]
