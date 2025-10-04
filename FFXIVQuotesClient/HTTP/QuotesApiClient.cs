@@ -56,7 +56,7 @@ public class QuotesApiClient
         httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
-    public async Task<QuotesResponse> Search(string userId, int maxQuotes = 5)
+    public async Task<QuotesResponse> Search(int userId, int maxQuotes = 5)
     {
         var response = await httpClient.GetAsync($"quotes/search/user/{userId}?max_quotes={maxQuotes}");
         response.EnsureSuccessStatusCode();

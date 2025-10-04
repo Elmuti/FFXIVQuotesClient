@@ -1,18 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Dalamud.NET.Sdk/13.1.0">
-  <PropertyGroup>
-    <Version>0.0.0.1</Version>
-    <Description>A sample plugin.</Description>
-    <PackageProjectUrl>https://github.com/goatcorp/SamplePlugin</PackageProjectUrl>
-    <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
-    <IsPackable>false</IsPackable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="..\Data\goat.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </Content>
+    <PropertyGroup>
+        <Version>0.1.0.1</Version>
+        <Description>Simple HTTP-client interface plugin to enable you to interact with the QuoteDB webapp</Description>
+        <PackageProjectUrl>https://github.com/goatcorp/SamplePlugin</PackageProjectUrl>
+        <PackageLicenseExpression>AGPL-3.0-or-later</PackageLicenseExpression>
+        <IsPackable>false</IsPackable>
+        <TargetFramework>net9.0-windows7.0</TargetFramework>
+    </PropertyGroup>
+    <ItemGroup>
     <Content Include="FFXIVQuotesClient.json" />
-  </ItemGroup>
+    </ItemGroup>
+    <Target Name="DeleteUnusedRuntimes" AfterTargets="Build;Release">
+        <ItemGroup>
+            <FoldersToDelete Include="$(OutDir)ru-RU" />
+            <FoldersToDelete Include="$(OutDir)runtimes\alpine-arm" />
+            <FoldersToDelete Include="$(OutDir)runtimes\alpine-arm64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\alpine-x64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\browser-wasm" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-arm" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-arm64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-armel" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-mips64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-musl-arm" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-musl-arm64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-musl-x64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-s390x" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-x64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\linux-x86" />
+            <FoldersToDelete Include="$(OutDir)runtimes\maccatalyst-arm64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\maccatalyst-x64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\osx-arm64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\osx-x64" />
+            <FoldersToDelete Include="$(OutDir)runtimes\unix" />
+            <FoldersToDelete Include="$(OutDir)runtimes\win-arm" />
+            <FoldersToDelete Include="$(OutDir)runtimes\win-arm64" />
+        </ItemGroup>
+        <Message Text="Deleting folders @(FoldersToDelete)" />
+        <RemoveDir Directories="@(FoldersToDelete)">
+            <Output TaskParameter="RemovedDirectories" ItemName="FoldersDeleted" />
+        </RemoveDir>
+        <Message Text="Deleted unused runtimes: @(FoldersDeleted)" Importance="high" />
+    </Target>
 </Project>

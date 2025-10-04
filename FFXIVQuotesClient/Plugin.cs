@@ -6,6 +6,7 @@ using Dalamud.Interface.Windowing;
 using Dalamud.Plugin.Services;
 using FFXIVQuotesClient.Http;
 using FFXIVQuotesClient.Http.Json;
+using FFXIVQuotesClient.Http.Responses;
 using FFXIVQuotesClient.Windows;
 
 namespace FFXIVQuotesClient;
@@ -21,11 +22,10 @@ public sealed class Plugin : IDalamudPlugin
     private MainWindow MainWindow { get; init; }
     private QuotesWindow QuotesWindow { get; init; }
     private CreateQuoteWindow CreateQuoteWindow { get; init; }
-
     private QuotesApiClient ApiClient { get; init; }
-
     public event Action<string, string> OnSettingsSaved;
     public event Action<string, string> OnQuoteCreated;
+    public event Action<int, int> OnQuoteRetrieved;
 
     public Configuration Configuration { get; init; }
 
@@ -36,6 +36,11 @@ public sealed class Plugin : IDalamudPlugin
         MainWindow.Toggle();
     }
 
+    public void InvokeOnQuoteRetrieved(int userId, int maxQuotes)
+    {
+        OnQuoteRetrieved.Invoke(userId, maxQuotes);
+    }
+    
     public void InvokeOnSettingsSaved(string baseUrl, string apiToken)
     {
         OnSettingsSaved.Invoke(baseUrl, apiToken);
@@ -87,6 +92,13 @@ public sealed class Plugin : IDalamudPlugin
                 Author = author,
                 Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
             });
+        };
+        
+        OnQuoteRetrieved += async (userId, maxQuotes) =>
+        {
+            var response = await ApiClient.Search(userId, maxQuotes);
+            QuotesWindow.RetrievedQuotes.Clear();
+            response.Quotes.ForEach((quote => QuotesWindow.RetrievedQuotes.Add(quote)));
         };
         
         Log.Information($"{PluginInterface.Manifest.Name} initialized");
