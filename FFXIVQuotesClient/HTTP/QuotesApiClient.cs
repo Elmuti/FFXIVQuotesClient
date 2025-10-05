@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
@@ -13,7 +14,8 @@ namespace FFXIVQuotesClient.Http;
 public class QuotesApiClient
 {
     private readonly HttpClient httpClient = new();
-    private string baseUrl = "";
+    private string baseUrl = "http://localhost/api/v1/";
+    private Uri baseAddress = new("http://localhost/api/v1/");
     private string apiToken = "";
     public string BaseUrl
     {
@@ -22,12 +24,14 @@ public class QuotesApiClient
         {
             if (!string.IsNullOrEmpty(value))
             {
-                try
+                if (IsValidUri(value))
                 {
-                    httpClient.BaseAddress = new Uri(value.EndsWith('/') ? value : value + '/');
-                    baseUrl = value;
+                    var validated = value.EndsWith('/') ? value : value + '/';
+                    baseAddress = new Uri(validated);
+                    baseUrl = validated;
+                    Plugin.Log.Information($"BaseUrl set to '{validated}'");
                 }
-                catch (UriFormatException e)
+                else
                 {
                     Plugin.Log.Warning($"Api BaseUrl format '{value}' is invalid");
                 }
@@ -44,8 +48,15 @@ public class QuotesApiClient
         get => apiToken;
         set
         {
-            apiToken  = value;
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
+            if (!string.IsNullOrEmpty(value))
+            {
+                apiToken  = value;
+                Plugin.Log.Information($"ApiToken set to '{string.Concat(Enumerable.Repeat('*', value.Length))}'");
+            }
+            else
+            {
+                Plugin.Log.Warning("Api ApiToken is empty or null");
+            }
         }
     }
 
@@ -53,11 +64,18 @@ public class QuotesApiClient
     {
         BaseUrl = configuration.BaseUrl;
         ApiToken = configuration.ApiToken;
+        httpClient.Timeout = TimeSpan.FromSeconds(5);
         httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
-
+    
+    public bool IsValidUri(string uri)
+    {
+        return Uri.TryCreate(uri, UriKind.RelativeOrAbsolute, out _);
+    }
+    
     public async Task<QuotesResponse> Search(int userId, int maxQuotes = 5)
     {
+        RefreshHeaders();
         var response = await httpClient.GetAsync($"quotes/search/user/{userId}?max_quotes={maxQuotes}");
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<QuotesResponse>() ?? throw new InvalidOperationException();
@@ -65,8 +83,15 @@ public class QuotesApiClient
     
     public async Task<bool> Store(Quote quote)
     {
+        RefreshHeaders();
         using StringContent jsonContent = new(JsonSerializer.Serialize(quote), Encoding.UTF8, "application/json");
         var response = await httpClient.PostAsync($"quotes", jsonContent);
         return response.IsSuccessStatusCode;
+    }
+
+    private void RefreshHeaders()
+    {
+        httpClient.BaseAddress = baseAddress;
+        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", ApiToken);
     }
 }

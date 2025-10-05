@@ -50,7 +50,6 @@ public class ConfigWindow : Window, IDisposable
         if (ImGui.Button("Save"))
         {
             plugin.InvokeOnSettingsSaved(baseUrl!, apiToken!);
-            Plugin.Log.Information($"{baseUrl}, {string.Concat(Enumerable.Repeat('*', apiToken!.Length))}");
         }
     }
 }
