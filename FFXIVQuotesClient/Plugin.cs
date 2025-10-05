@@ -22,7 +22,7 @@ public sealed class Plugin : IDalamudPlugin
     private MainWindow MainWindow { get; init; }
     private QuotesWindow QuotesWindow { get; init; }
     private CreateQuoteWindow CreateQuoteWindow { get; init; }
-    private QuotesApiClient ApiClient { get; init; }
+    public QuotesApiClient ApiClient { get; init; }
     public event Action<string, string> OnSettingsSaved;
     public event Action<string, string> OnQuoteCreated;
     public event Action<int, int> OnQuoteRetrieved;

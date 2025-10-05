@@ -6,8 +6,10 @@
   "RepoUrl": "https://github.com/Elmuti/FFXIVQuotesClient",
   "ApplicableVersion": "any",
   "Tags": [
-    "sample",
-    "plugin",
-    "quote"
+    "elmu",
+    "client",
+    "quote", 
+    "quotes", 
+    "quotedb"
   ]
 }
