@@ -4,7 +4,7 @@
     "Name": "FFXIVQuotesClient",
     "Description": "Simple HTTP-client interface plugin to enable you to interact with the QuoteDB webapp ",
     "InternalName": "FFXIVQuotesClient",
-    "AssemblyVersion": "0.1.0.4",
+    "AssemblyVersion": "0.1.0.5",
     "TestingAssemblyVersion": null,
     "RepoUrl": "https://github.com/Elmuti/FFXIVQuotesClient",
     "ApplicableVersion": "any",
@@ -12,9 +12,9 @@
     "Punchline": "Deploy your quotes lightning fast",
     "IsHide": false,
     "IsTestingExclusive": false,
-    "DownloadLinkInstall": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.4/latest.zip",
-    "DownloadLinkTesting": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.4/latest.zip",
-    "DownloadLinkUpdate": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.4/latest.zip",
+    "DownloadLinkInstall": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.5/latest.zip",
+    "DownloadLinkTesting": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.5/latest.zip",
+    "DownloadLinkUpdate": "https://github.com/Elmuti/FFXIVQuotesClient/releases/download/0.1.0.5/latest.zip",
     "LastUpdate": "1759637578"
   }
 ]
